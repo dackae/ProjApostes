@@ -26,7 +26,5 @@
         </p>
         <p>Indica el monto: <input type="number"></p>
         <p>Indica el resultado. Equipo 1:<!-- %out.println(partidos.get())--><input type="number" name="equipo2"> Equipo 2:<<input type="number" name="equipo1"></p>
-        <p>Elige el partido:<input type="select"></p>
-        <p>Elige el partido:<input type="select"></p>
     </body>
 </html>
