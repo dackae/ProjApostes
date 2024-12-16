@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>listaApostas</title>
-        <%List<Aposta> listaApostes = (List<Aposta>) getServletContext().getAttribute("listaApostes");
+        <%List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaApostes");
             List<Aposta> listaFiltrada = (ArrayList<Aposta>) getServletContext().getAttribute("listaFiltrada");
             String filtro = request.getParameter("filtro");
         %>
