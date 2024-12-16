@@ -45,7 +45,7 @@
             </select></br>
             Indica el monto: <input type="number" name="monto" min="1" required value="<%=monto%>">€</br>
             Indica la fecha: <input type="date" name="fecha" required value="<%=fecha%>"></br>
-            Indica el resultado: <input type="string" name="resultado" required value=""<%=resultado%>>
+            Indica el resultado: <input type="string" name="resultado" required value="<%=resultado%>">
             <input type="submit" name="submit" value="confirmar"> <button onclick="location.href='./listaApostas.jsp'">Tornar</button><!-- No se si quitar el location o no-->
         </form>
 </body>

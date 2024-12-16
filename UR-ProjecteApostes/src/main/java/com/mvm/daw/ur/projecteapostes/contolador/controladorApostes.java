@@ -66,6 +66,10 @@ public class controladorApostes extends HttpServlet {
         List<Aposta> listaApostes = new ArrayList<>();
         getServletContext().setAttribute("listaApostes", listaApostes);
         serveisApostes = new serveisApostes();
+        List<Aposta> listaFiltrada = new ArrayList<>();
+        listaFiltrada = null;
+        getServletContext().setAttribute("listaFiltrada", listaFiltrada);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -96,6 +100,7 @@ public class controladorApostes extends HttpServlet {
             throws ServletException, IOException {
         String accion = request.getParameter("submit");
         List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaApostes");
+        List<Aposta> listaFiltrada = (ArrayList<Aposta>) getServletContext().getAttribute("listaFiltrada");
         if ("afegir".equals(accion)) {
             contadorIDs += 1;
             serveisApostes.afegirAposta(contadorIDs, listaApostes, request);
@@ -112,6 +117,14 @@ public class controladorApostes extends HttpServlet {
             serveisApostes.editarAposta(listaApostes, request);
         } else if ("Detalls".equals(accion)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("detallarAposta.jsp");
+            dispatcher.forward(request, response);
+        } else if ("Filtra".equals(accion)) {
+            if (listaFiltrada == null) {
+                listaFiltrada = new ArrayList<>();
+            }
+            String filtro = serveisApostes.filtrarAposta(listaFiltrada, listaApostes, request);
+            request.setAttribute("filtro", filtro);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listaApostas.jsp");
             dispatcher.forward(request, response);
         }
     }
