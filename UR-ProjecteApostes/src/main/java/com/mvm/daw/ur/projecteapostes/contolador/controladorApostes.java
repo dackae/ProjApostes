@@ -6,6 +6,7 @@ package com.mvm.daw.ur.projecteapostes.contolador;
 
 import com.mvm.daw.ur.projecteapostes.model.Aposta;
 import com.mvm.daw.ur.projecteapostes.model.serveisApostes;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -22,9 +23,10 @@ import java.util.List;
  */
 @WebServlet(name = "controladorApostes", urlPatterns = {"/controladorApostes"})
 public class controladorApostes extends HttpServlet {
-    
+
     private serveisApostes serveisApostes;
     private int contadorIDs;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,7 +52,7 @@ public class controladorApostes extends HttpServlet {
             out.println("</html>");
         }
     }
-    
+
     @Override
     public void init() throws ServletException {
 // Inicializar la lista de usuarios en el contexto de la aplicación 
@@ -65,7 +67,6 @@ public class controladorApostes extends HttpServlet {
         getServletContext().setAttribute("listaApostes", listaApostes);
         serveisApostes = new serveisApostes();
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -93,17 +94,20 @@ public class controladorApostes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            String accion = request.getParameter("submit");
-            List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaAposta");
-            if ("afegir".equals(accion)){
-                contadorIDs +=1;
-                serveisApostes.afegirAposta(contadorIDs, listaApostes, request);
-            } else if ("borrar".equals(accion)){
-                serveisApostes.borrarAposta(contadorIDs, listaApostes, request);
-            } else if ("editar".equals(accion)){
-                int ID = usuario.get
-                Aposta apostaAEditar = listaApostes.get()
-            }
+        String accion = request.getParameter("submit");
+        List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaAposta");
+        if ("afegir".equals(accion)) {
+            contadorIDs += 1;
+            serveisApostes.afegirAposta(contadorIDs, listaApostes, request);
+        } else if ("borrar".equals(accion)) {
+            serveisApostes.borrarAposta(contadorIDs, listaApostes, request);
+        } else if ("editar".equals(accion)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("editarAposta.jsp");
+            dispatcher.forward(request, response);
+        } else if ("confirmar".equals(accion)) {
+            serveisApostes.editarAposta(listaApostes, request);
+        } else if ("detallar".equals(accion)) {
+        }
     }
 
     /**

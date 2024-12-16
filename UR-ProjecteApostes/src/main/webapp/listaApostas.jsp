@@ -4,14 +4,36 @@
     Author     : isard
 --%>
 
+<%@page import="com.mvm.daw.ur.projecteapostes.model.Aposta"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>listaApostas</title>
+        <%List<Aposta> listaApostes = (List<Aposta>) request.getAttribute("listaApostes");
+          for (Aposta aposta : listaApostes){
+          %>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Llista d'apostes</h1>
+        <ul>
+            <%
+            out.println("<li><form action=\"controladorAposta\" method=\"post\">" +
+                    aposta.getID() +
+                    aposta.getNombre() +
+                    aposta.getPartido() +
+                    aposta.getResultado() +
+                    aposta.getMonto() +
+                    aposta.getData() +
+                    "<input type=\"hidden\" name=\"ID\" value=\"" + aposta.getID() + "\">" +
+                    "<input type=\"button\" name=\"submit\" value=\"Detalls\"" + 
+                    "<input type=\"button\" name=\"submit\" value=\"Borrar\"" + 
+                    "<input type=\"button\" name=\"submit\" href=\"editarAposta.jsp\">" +
+                    "</form></li>");
+            }
+            %>
+        </ul>
     </body>
 </html>

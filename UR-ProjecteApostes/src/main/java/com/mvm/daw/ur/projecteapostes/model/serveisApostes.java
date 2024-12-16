@@ -35,18 +35,23 @@ public class serveisApostes{
     }
     
     public void editarAposta(List<Aposta> listaApostes, HttpServletRequest request){
-        int ID = Integer.parseInt(request.getParameter("ID"))-1;
-        Aposta apostaEditar = listaApostes.get(ID);
-        // no se si debo llamar a un jsp ahora
-        // supongo que haria algo en plan enviar apostaEditar al jsp, quizas ponerlo como context
-        getServletContext().setAttribute("apostaEditar", apostaEditar);
-        // pero se que luego hago esto:
+        int ID = Integer.parseInt(request.getParameter("ID"));
         String nombre = request.getParameter("nombre");
         String partido = request.getParameter("partido");
         int monto = Integer.parseInt(request.getParameter("monto"));
         String fecha = request.getParameter("fecha");
-        String resultado = request.getParameter("resultado");
-        Aposta apuesta = new Aposta(ID, nombre, partido, monto, fecha, resultado);
-        listaApostes.set(ID, apuesta);
+        String resultado = request.getParameter("resultado");        
+        for (Aposta aposta : listaApostes){
+            int identificador = aposta.getID();
+            if (identificador == ID){
+                aposta.setNombre(nombre);
+                aposta.setPartido(partido);
+                aposta.setMonto(monto);
+                aposta.setData(fecha);
+                aposta.setResultado(resultado);
+            }
+        }
+
+
     }
 }

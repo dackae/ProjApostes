@@ -25,7 +25,7 @@
                 %>
             </select></br>
             Indica el monto: <input type="number" name="monto" required>€</br>
-            Indica la fecha: <input type="date" name="fecha" required>€</br>
+            Indica la fecha: <input type="date" name="fecha" required></br>
             Indica el resultado: <input type="string" name="resultado" required><!-- %out.println(partidos.get())<input type="number" name="equipo2"> Equipo 2:<<input type="number" name="equipo1"> -->
             <input type="submit" name="submit" value="afegir">
         </form>
