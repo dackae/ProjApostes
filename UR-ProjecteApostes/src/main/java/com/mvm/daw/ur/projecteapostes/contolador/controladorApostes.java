@@ -95,18 +95,22 @@ public class controladorApostes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("submit");
-        List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaAposta");
+        List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaApostes");
         if ("afegir".equals(accion)) {
             contadorIDs += 1;
             serveisApostes.afegirAposta(contadorIDs, listaApostes, request);
-        } else if ("borrar".equals(accion)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listaApostas.jsp");
+            dispatcher.forward(request, response);
+        } else if ("Borrar".equals(accion)) {
             serveisApostes.borrarAposta(contadorIDs, listaApostes, request);
-        } else if ("editar".equals(accion)) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listaApostas.jsp");
+            dispatcher.forward(request, response);
+        } else if ("Editar".equals(accion)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("editarAposta.jsp");
             dispatcher.forward(request, response);
         } else if ("confirmar".equals(accion)) {
             serveisApostes.editarAposta(listaApostes, request);
-        } else if ("detallar".equals(accion)) {
+        } else if ("Detalls".equals(accion)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("detallarAposta.jsp");
             dispatcher.forward(request, response);
         }

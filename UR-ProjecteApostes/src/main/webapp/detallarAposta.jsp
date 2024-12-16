@@ -12,13 +12,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>detallarAposta</title>
-        <%  List<String> partidos = (List<String>) request.getAttribute("listaPartidos");
-            List<Aposta> listaApostes = (List<Aposta>) request.getAttribute("listaApostes");
+        <%  List<String> partidos = (List<String>) getServletContext().getAttribute("listaPartidos");
+            List<Aposta> listaApostes = (List<Aposta>) getServletContext().getAttribute("listaApostes");
             int ID;
             Aposta apostaAMostrar = null;
             for (Aposta aposta : listaApostes){
                 ID = aposta.getID();
-                if (ID == Integer.parseInt(request.getParameter("identificador"))){
+                if (ID == Integer.parseInt(request.getParameter("ID"))){
                     apostaAMostrar = aposta;
                 }
             }
@@ -39,6 +39,6 @@
             <li><strong>Fecha:</strong><%=fecha%></li>
             <li><strong>Resultado:</strong><%=resultado%></li>
         </ul>
-        <button onclick="location.href='./listaApostas.jsp'">Volver</button>
+        <button onclick="location.href='./listaApostas.jsp'">Tornar</button>
     </body>
 </html>

@@ -30,6 +30,7 @@ public class serveisApostes{
             int identificador = apuesta.getID();
             if (identificador == ID){
                 listaApostes.remove(apuesta);
+                break;
             }
         }
     }
