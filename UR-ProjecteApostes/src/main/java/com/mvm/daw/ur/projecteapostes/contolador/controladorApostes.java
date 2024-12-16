@@ -22,7 +22,9 @@ import java.util.List;
  */
 @WebServlet(name = "controladorApostes", urlPatterns = {"/controladorApostes"})
 public class controladorApostes extends HttpServlet {
-
+    
+    private serveisApostes serveisApostes;
+    private int contadorIDs;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -52,10 +54,16 @@ public class controladorApostes extends HttpServlet {
     @Override
     public void init() throws ServletException {
 // Inicializar la lista de usuarios en el contexto de la aplicación 
-        List<String> listaPartidos = new ArrayList<>();
-        listaPartidos.add("Barcelona - Madrid"); //voy a añadir más
+        List<String> listaPartidos = new ArrayList<>(); // mejor que sea una tupla
+        listaPartidos.add("Barcelona - Madrid");
+        listaPartidos.add("Osasuna - Villareal");
+        listaPartidos.add("A. Bilbao - A. Madrid");
+        listaPartidos.add("Las Palmas - Rayo Vallecano");
+        listaPartidos.add("Real Sociedad - Girona");
         getServletContext().setAttribute("listaPartidos", listaPartidos); //informacion guardada para todos los usuarios que se vayan a conectar a la pagina
-        serveisApostes serveisApostes = new serveisApostes();
+        List<Aposta> listaApostes = new ArrayList<>();
+        getServletContext().setAttribute("listaApostes", listaApostes);
+        serveisApostes = new serveisApostes();
     }
 
 
@@ -85,7 +93,17 @@ public class controladorApostes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+            String accion = request.getParameter("submit");
+            List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaAposta");
+            if ("afegir".equals(accion)){
+                contadorIDs +=1;
+                serveisApostes.afegirAposta(contadorIDs, listaApostes, request);
+            } else if ("borrar".equals(accion)){
+                serveisApostes.borrarAposta(contadorIDs, listaApostes, request);
+            } else if ("editar".equals(accion)){
+                int ID = usuario.get
+                Aposta apostaAEditar = listaApostes.get()
+            }
     }
 
     /**

@@ -4,84 +4,49 @@
  */
 package com.mvm.daw.ur.projecteapostes.model;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author isard
- */
-@WebServlet(name = "serveisApostes", urlPatterns = {"/serveisApostes"})
-public class serveisApostes extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet serveisApostes</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet serveisApostes at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+public class serveisApostes{
+    
+    public serveisApostes(){
+    }
+    
+    public void afegirAposta(int contadorIDs, List<Aposta> listaApostes, HttpServletRequest request){
+        int ID = contadorIDs;
+        String nombre = request.getParameter("nombre");
+        String partido = request.getParameter("partido");
+        int monto = Integer.parseInt(request.getParameter("monto"));
+        String fecha = request.getParameter("fecha");
+        String resultado = request.getParameter("resultado");
+        Aposta apuesta = new Aposta(ID, nombre, partido, monto, fecha, resultado);
+        listaApostes.add(apuesta);
+    }
+    
+    public void borrarAposta(int contadorIDs, List<Aposta> listaApostes, HttpServletRequest request){
+        int ID = contadorIDs;
+        for (Aposta apuesta : listaApostes){
+            int identificador = apuesta.getID();
+            if (identificador == ID){
+                listaApostes.remove(apuesta);
+            }
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    
+    public void editarAposta(List<Aposta> listaApostes, HttpServletRequest request){
+        int ID = Integer.parseInt(request.getParameter("ID"))-1;
+        Aposta apostaEditar = listaApostes.get(ID);
+        // no se si debo llamar a un jsp ahora
+        // supongo que haria algo en plan enviar apostaEditar al jsp, quizas ponerlo como context
+        getServletContext().setAttribute("apostaEditar", apostaEditar);
+        // pero se que luego hago esto:
+        String nombre = request.getParameter("nombre");
+        String partido = request.getParameter("partido");
+        int monto = Integer.parseInt(request.getParameter("monto"));
+        String fecha = request.getParameter("fecha");
+        String resultado = request.getParameter("resultado");
+        Aposta apuesta = new Aposta(ID, nombre, partido, monto, fecha, resultado);
+        listaApostes.set(ID, apuesta);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
