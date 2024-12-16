@@ -51,7 +51,5 @@ public class serveisApostes{
                 aposta.setResultado(resultado);
             }
         }
-
-
     }
 }

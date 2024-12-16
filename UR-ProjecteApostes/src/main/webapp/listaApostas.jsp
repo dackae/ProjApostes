@@ -30,10 +30,11 @@
                     "<input type=\"hidden\" name=\"ID\" value=\"" + aposta.getID() + "\">" +
                     "<input type=\"button\" name=\"submit\" value=\"Detalls\"" + 
                     "<input type=\"button\" name=\"submit\" value=\"Borrar\"" + 
-                    "<input type=\"button\" name=\"submit\" href=\"editarAposta.jsp\">" +
+                    "<input type=\"button\" name=\"submit\">" +
                     "</form></li>");
             }
             %>
         </ul>
+        <button onclick="href=apuestas.jsp">
     </body>
 </html>
