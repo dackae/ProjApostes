@@ -24,6 +24,7 @@
             <%
                 if (listaFiltrada != null){
                     listaApostes = listaFiltrada;
+                    out.println("<h1>ayuda</h1>");
                     if (listaApostes.size() == 0) {
                         out.println("<p>No existeix ninguna aposta a nom de" + filtro + "</p>");
                     }
