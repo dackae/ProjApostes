@@ -54,13 +54,14 @@ public class serveisApostes{
         }
     }
     
-    public String filtrarAposta(List<Aposta> listaFiltrada, List<Aposta> listaApostes, HttpServletRequest request){
+    public List<Aposta> filtrarAposta(List<Aposta> listaApostes, HttpServletRequest request){
         String filtro = request.getParameter("Filtro");
+        List<Aposta> listaFiltrada = new ArrayList<>();
         for (Aposta apuesta : listaApostes){
             if ((apuesta.getNombre()).equals(filtro)){
                 listaFiltrada.add(apuesta);
             }
         }
-        return filtro;
+        return listaFiltrada;
     }
 }
