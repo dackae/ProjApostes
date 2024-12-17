@@ -17,24 +17,29 @@
     </head>
     <body>
         <h1>Apostes filtrades per <%=filtro%></h1>
-        <%
-            List<Aposta> listaFiltrada = (ArrayList<Aposta>) request.getAttribute("listaFiltrada");
-            if (listaFiltrada != null) {
-                for (Aposta aposta : listaFiltrada) {
-                    out.println("<li><form action=\"controladorApostes\" method=\"post\">"
-                            + aposta.getID() + " "
-                            + aposta.getNombre() + " "
-                            + aposta.getPartido() + " "
-                            + aposta.getMonto() + "€ "
-                            + aposta.getData() + " "
-                            + "<input type=\"hidden\" name=\"ID\" value=\"" + aposta.getID() + "\">" + " "
-                            + "<input type=\"submit\" name=\"submit\" value=\"Detalls\">" + " "
-                            + "<input type=\"submit\" name=\"submit\" value=\"Borrar\">" + " "
-                            + "<input type=\"submit\" name=\"submit\" value=\"Editar\"></form></li>");
+        <ul>
+            <%
+                List<Aposta> listaFiltrada = (ArrayList<Aposta>) request.getAttribute("listaFiltrada");
+                if (listaFiltrada.size() == 0) {
+                    out.println("<p>No existeix ninguna aposta a nom de <strong>" + filtro + "</strong>.</p>");
                 }
-            }
+                if (listaFiltrada != null) {
+                    for (Aposta aposta : listaFiltrada) {
+                        out.println("<li><form action=\"controladorApostes\" method=\"post\">"
+                                + aposta.getID() + " "
+                                + aposta.getNombre() + " "
+                                + aposta.getPartido() + " "
+                                + aposta.getMonto() + "€ "
+                                + aposta.getData() + " "
+                                + "<input type=\"hidden\" name=\"ID\" value=\"" + aposta.getID() + "\">" + " "
+                                + "<input type=\"submit\" name=\"submit\" value=\"Detalls\">" + " "
+                                + "<input type=\"submit\" name=\"submit\" value=\"Borrar\">" + " "
+                                + "<input type=\"submit\" name=\"submit\" value=\"Editar\"></form></li>");
+                    }
+                }
 
-        %>
-        <button onclick="location.href='./listaApostas.jsp'">Tornar</button>
+            %>
+        </ul>
+        <button onclick="location.href = './listaApostas.jsp'">Tornar</button>
     </body>
 </html>

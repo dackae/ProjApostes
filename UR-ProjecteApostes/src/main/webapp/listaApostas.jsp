@@ -14,21 +14,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>listaApostas</title>
         <%List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaApostes");
-            List<Aposta> listaFiltrada = (ArrayList<Aposta>) getServletContext().getAttribute("listaFiltrada");
-            String filtro = request.getParameter("filtro");
         %>
     </head>
     <body>
         <h1>Llista d'apostes</h1>
         <ul>
             <%
-                if (listaFiltrada != null){
-                    listaApostes = listaFiltrada;
-                    out.println("<h1>ayuda</h1>");
-                    if (listaApostes.size() == 0) {
-                        out.println("<p>No existeix ninguna aposta a nom de" + filtro + "</p>");
-                    }
-                }
                 for (Aposta aposta : listaApostes) {
                     out.println("<li><form action=\"controladorApostes\" method=\"post\">"
                             + aposta.getID() + " "
