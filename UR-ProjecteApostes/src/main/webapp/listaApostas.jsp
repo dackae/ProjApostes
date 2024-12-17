@@ -34,7 +34,7 @@
                             + aposta.getID() + " "
                             + aposta.getNombre() + " "
                             + aposta.getPartido() + " "
-                            + aposta.getMonto() + " "
+                            + aposta.getMonto() + "€ "
                             + aposta.getData() + " "
                             + "<input type=\"hidden\" name=\"ID\" value=\"" + aposta.getID() + "\">" + " "
                             + "<input type=\"submit\" name=\"submit\" value=\"Detalls\">" + " "
