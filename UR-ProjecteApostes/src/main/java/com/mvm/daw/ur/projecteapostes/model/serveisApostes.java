@@ -24,8 +24,8 @@ public class serveisApostes{
         listaApostes.add(apuesta);
     }
     
-    public void borrarAposta(int contadorIDs, List<Aposta> listaApostes, HttpServletRequest request){
-        int ID = contadorIDs;
+    public void borrarAposta(List<Aposta> listaApostes, HttpServletRequest request){
+        int ID = Integer.parseInt(request.getParameter("ID"));
         for (Aposta apuesta : listaApostes){
             int identificador = apuesta.getID();
             if (identificador == ID){

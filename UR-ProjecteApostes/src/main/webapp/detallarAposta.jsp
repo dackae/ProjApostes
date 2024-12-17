@@ -33,11 +33,11 @@
     <body>
         <h1>Apuesta (<%=ID%>)</h1>
         <ul>
-            <li><strong>Nombre y apellidos:</strong><%=nombre%></li>
-            <li><strong>Partido:</strong><%=partido%></li>
-            <li><strong>Monto:</strong><%=monto%>€</li>
-            <li><strong>Fecha:</strong><%=fecha%></li>
-            <li><strong>Resultado:</strong><%=resultado%></li>
+            <li><strong>Nombre y apellidos: </strong><%=nombre%></li>
+            <li><strong>Partido: </strong><%=partido%></li>
+            <li><strong>Monto: </strong><%=monto%>€</li>
+            <li><strong>Fecha: </strong><%=fecha%></li>
+            <li><strong>Resultado: </strong><%=resultado%></li>
         </ul>
         <button onclick="location.href='./listaApostas.jsp'">Tornar</button>
     </body>
