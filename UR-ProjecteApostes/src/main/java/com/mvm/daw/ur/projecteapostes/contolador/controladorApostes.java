@@ -115,6 +115,8 @@ public class controladorApostes extends HttpServlet {
             dispatcher.forward(request, response);
         } else if ("confirmar".equals(accion)) {
             serveisApostes.editarAposta(listaApostes, request);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listaApostas.jsp");
+            dispatcher.forward(request, response);
         } else if ("Detalls".equals(accion)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("detallarAposta.jsp");
             dispatcher.forward(request, response);
