@@ -29,6 +29,7 @@
             String fecha = apostaAMostrar.getData();
             String resultado = apostaAMostrar.getResultado();
             String competicion = apostaAMostrar.getCompeticion();
+            Boolean ganador = apostaAMostrar.getGanador();
         %>
     </head>
     <body>
@@ -40,6 +41,13 @@
             <li><strong>Fecha: </strong><%=fecha%></li>
             <li><strong>Resultado: </strong><%=resultado%></li>
             <li><strong>Competicion: </strong><%=competicion%></li>
+            <li><strong>Has guanyat? </strong><%
+                if (ganador.equals(Boolean.TRUE)){
+                    out.println("Has guanyat!");
+                } else{
+                    out.println("Has perdut.");
+                }
+                %></li>
         </ul>
         <button onclick="location.href='./listaApostas.jsp'">Tornar</button>
     </body>
