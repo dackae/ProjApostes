@@ -45,7 +45,15 @@
             </select></br>
             Indica el monto: <input type="number" name="monto" min="1" required value="<%=monto%>">€</br>
             Indica la fecha: <input type="date" name="fecha" required value="<%=fecha%>"></br>
-            Indica el resultado: <input type="string" name="resultado" required value="<%=resultado%>">
+            Indica el resultado: <input type="string" name="resultado" required value="<%=resultado%>"></br>
+            Indica la competicion: <select name="competicion" required>
+                <%
+                    List<String> competiciones = (List<String>) getServletContext().getAttribute("listaCompeticiones");
+                    for (String competicion : competiciones) {
+                        out.println("<option value=\"" + competicion + "\">" + competicion + "</option>");
+                    }
+                %>
+            </select></br>
             <input type="submit" name="submit" value="confirmar">
         </form>
         <button onclick="location.href='./listaApostas.jsp'">Tornar</button>

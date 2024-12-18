@@ -1,26 +1,29 @@
 <%-- 
-    Document   : listaApostas
-    Created on : 15 de des. 2024, 14:58:19
+    Document   : listaGanadores
+    Created on : 18 de des. 2024, 19:14:19
     Author     : isard
 --%>
 
-<%@page import="java.util.ArrayList"%>
 <%@page import="com.mvm.daw.ur.projecteapostes.model.Aposta"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>listaApostas</title>
-        <%List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaApostes");
-        %>
+        <title>listaGanadores</title>
     </head>
     <body>
-        <h1>Llista d'apostes</h1>
+        <h1>Llista de guanyadors</h1>
         <ul>
             <%
-                for (Aposta aposta : listaApostes) {
+                List<Aposta> listaGanadores = (ArrayList<Aposta>) request.getAttribute("listaGanadores");
+                if (listaGanadores.size() == 0) {
+                    out.println("<p>No existeix ninguna aposta guanyadora.</p>");
+                }
+
+                for (Aposta aposta : listaGanadores) {
                     out.println("<li><form action=\"controladorApostes\" method=\"post\">"
                             + aposta.getID() + " "
                             + aposta.getNombre() + " "
@@ -35,15 +38,6 @@
                 }
             %>
         </ul>
-        <form action="controladorApostes" method="post">
-            Filtra apostes per nom sencer:<input type="text" name="Filtro"><button type="submit" name="submit" value="Filtra" required>Filtra</button></br>
-        </form>
-        <form action="controladorApostes" method="post">
-            Filtra apostes per nom sencer y per un rang d'aposta:<input type="text" name="filtroUsuarioCompuesto" required> Num1:<input type="number" name="filtroMontoMax" min="1" required> Num2:<input type="number" name="filtroMontoMin" min="1" required> <button type="submit" name="submit" value="filtraMontoUsuario">Filtra</button></br>
-        </form>
-        <form action="controladorApostes" method="post">
-            Lista las apuestas ganadoras <button type="submit" name="submit" value="ListarGanadores">Listar Ganadores</button>
-        </form>
         <button onclick="location.href = 'apuestas.jsp'">Tornar</button>
     </body>
 </html>

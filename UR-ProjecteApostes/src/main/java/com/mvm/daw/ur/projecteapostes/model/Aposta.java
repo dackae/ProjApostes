@@ -13,26 +13,38 @@ import java.util.List;
  * @author isard
  */
 public class Aposta {
+
     int ID;
     String nombre;
     String partido;
     int monto;
     String data;
     String resultado;
+    String competicion;
+    Boolean ganador;
 
-    public Aposta(int ID, String nombre, String partido, int monto, String data, String resultado) {
+    public Aposta(int ID, String nombre, String partido, int monto, String data, String resultado, String competicion) {
         this.ID = ID;
         this.nombre = nombre;
         this.partido = partido;
         this.monto = monto;
         this.data = data;
         this.resultado = resultado;
+        this.competicion = competicion;
+    }
+
+    public String getCompeticion() {
+        return competicion;
+    }
+
+    public void setCompeticion(String competicion) {
+        this.competicion = competicion;
     }
 
     public int getID() {
         return ID;
     }
-    
+
     public String getNombre() {
         return this.nombre;
     }
@@ -52,7 +64,11 @@ public class Aposta {
     public String getResultado() {
         return this.resultado;
     }
-    
+
+    public Boolean getGanador() {
+        return this.ganador;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -71,5 +87,9 @@ public class Aposta {
 
     public void setResultado(String resultado) {
         this.resultado = resultado;
+    }
+
+    public void setGanador(Boolean ganador) {
+        this.ganador = ganador;
     }
 }

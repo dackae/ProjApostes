@@ -28,6 +28,7 @@
             int monto = apostaAMostrar.getMonto();
             String fecha = apostaAMostrar.getData();
             String resultado = apostaAMostrar.getResultado();
+            String competicion = apostaAMostrar.getCompeticion();
         %>
     </head>
     <body>
@@ -38,6 +39,7 @@
             <li><strong>Monto: </strong><%=monto%>€</li>
             <li><strong>Fecha: </strong><%=fecha%></li>
             <li><strong>Resultado: </strong><%=resultado%></li>
+            <li><strong>Competicion: </strong><%=competicion%></li>
         </ul>
         <button onclick="location.href='./listaApostas.jsp'">Tornar</button>
     </body>
