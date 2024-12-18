@@ -14,6 +14,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>listaApostas</title>
         <%List<Aposta> listaApostes = (ArrayList<Aposta>) getServletContext().getAttribute("listaApostes");
+        List<String> listaPartidos = new ArrayList<>();
+        listaPartidos.add("Barcelona - Madrid (J2)");
+        listaPartidos.add("Barcelona - Madrid (J1)");
+        listaPartidos.add("Osasuna - Villareal");
+        listaPartidos.add("A. Bilbao - A. Madrid");
+        listaPartidos.add("Las Palmas - Rayo Vallecano");
+        listaPartidos.add("Real Sociedad - Girona");
+        getServletContext().setAttribute("listaPartidos", listaPartidos);
+
         %>
     </head>
     <body>
@@ -40,6 +49,16 @@
         </form>
         <form action="controladorApostes" method="post">
             Filtra apostes per nom sencer y per un rang d'aposta (no inclosos):<input type="text" name="filtroUsuarioCompuesto" required> Num1:<input type="number" name="filtroMontoMax" min="1" required> Num2:<input type="number" name="filtroMontoMin" min="1" required> <button type="submit" name="submit" value="filtraMontoUsuario">Filtra</button></br>
+        </form>
+        <form action="controladorApostes" method="post">
+            Filtra apostes per partit y data:<select name="partidoFiltro" required>
+                <%
+                    List<String> partidos = (List<String>) getServletContext().getAttribute("listaPartidos");
+                    for (String partido : partidos) {
+                        out.println("<option value=\"" + partido + "\">" + partido + "</option>");
+                    }
+                %>
+            </select> Data:<input type="date" name="fechaFiltro" required><button type="submit" name="submit" value="mostrarApuestasFechaPartido">Filtra</button></br>
         </form>
         <form action="controladorApostes" method="post">
             Lista las apuestas ganadoras <button type="submit" name="submit" value="ListarGanadores">Listar Ganadores</button>

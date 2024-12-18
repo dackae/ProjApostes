@@ -1,34 +1,33 @@
 <%-- 
-    Document   : listaMontoUsuario
-    Created on : 18 de des. 2024, 19:24:11
+    Document   : listaApostasPartido
+    Created on : 18 de des. 2024, 20:18:38
     Author     : isard
 --%>
 
 <%@page import="com.mvm.daw.ur.projecteapostes.model.Aposta"%>
-<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>listamontoUsuario</title>
+        <title>listaApostasPartido</title>
         <%
-        String filtro = request.getParameter("filtroUsuarioCompuesto");
-        String montoMax = request.getParameter("filtroMontoMax");
-        String montoMin = request.getParameter("filtroMontoMin");
+        String filtro = request.getParameter("partidoFiltro");
+        String fecha = request.getParameter("fechaFiltro");
         %>
     </head>
     <body>
-        <h1>Apostes filtrades per <%=filtro%> entre <%=montoMax%>€ y <%=montoMin%>€</h1>
+        <h1>Apostes filtrades per <%=filtro%> y <%=fecha%></h1>
         <ul>
             <%
-                List<Aposta> listaMontoUsuario = (ArrayList<Aposta>) request.getAttribute("listaMontoUsuario");
-                if (listaMontoUsuario.size() == 0) {
-                    out.println("<p>No existeix ninguna aposta a nom de <strong>" + filtro + "</strong> y en un rango de <strong>" + montoMax + "</strong> a <strong>" + montoMin + "</strong>.</p>");
+                List<Aposta> listaApostasPartido = (ArrayList<Aposta>) request.getAttribute("listaApostasPartido");
+                if (listaApostasPartido.size() == 0) {
+                    out.println("<p>No existeix ninguna aposta a nom de <strong>" + filtro + "</strong> y en la fecha <strong>" + fecha + "</strong>.</p>");
                 }
-                if (listaMontoUsuario != null) {
-                    for (Aposta aposta : listaMontoUsuario) {
+                if (listaApostasPartido != null) {
+                    for (Aposta aposta : listaApostasPartido) {
                         out.println("<li><form action=\"controladorApostes\" method=\"post\">"
                                 + aposta.getID() + " "
                                 + aposta.getNombre() + " "

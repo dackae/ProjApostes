@@ -74,14 +74,6 @@ public class controladorApostes extends HttpServlet {
         resultadosPartidos.put("Las Palmas - Rayo Vallecano", "0-0");
         resultadosPartidos.put("Real Sociedad - Girona", "2-1");
         getServletContext().setAttribute("resultadosPartidos", resultadosPartidos);
-        Map<String, String> fechasPartidos = new HashMap<String, String>();
-        fechasPartidos.put("Barcelona - Madrid (J2)", "2025-02-15");
-        fechasPartidos.put("Barcelona - Madrid (J1)", "2024-11-04");
-        fechasPartidos.put("Osasuna - Villareal", "2024-12-11");
-        fechasPartidos.put("A. Bilbao - A. Madrid", "2024-10-23");
-        fechasPartidos.put("Las Palmas - Rayo Vallecano", "2024-11-26");
-        fechasPartidos.put("Real Sociedad - Girona", "2024-11-05");
-        getServletContext().setAttribute("fechasPartidos", fechasPartidos);
         List<String> listaCompeticiones = new ArrayList<>();
         listaCompeticiones.add("LaLiga");
         listaCompeticiones.add("Premier League");
@@ -159,6 +151,11 @@ public class controladorApostes extends HttpServlet {
             List<Aposta> listaMontoUsuario = serveisApostes.filtraMontoUsuario(listaApostes, request);
             request.setAttribute("listaMontoUsuario", listaMontoUsuario);
             RequestDispatcher dispatcher = request.getRequestDispatcher("listaMontoUsuario.jsp");
+            dispatcher.forward(request, response);
+        } else if ("mostrarApuestasFechaPartido".equals(accion)){
+            List<Aposta> listaApostasPartido = serveisApostes.listaApostesPartido(listaApostes, request);
+            request.setAttribute("listaApostasPartido", listaApostasPartido);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("listaApostasPartido.jsp");
             dispatcher.forward(request, response);
         }
     }
