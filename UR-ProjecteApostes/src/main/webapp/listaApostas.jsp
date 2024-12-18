@@ -39,7 +39,7 @@
             Filtra apostes per nom sencer:<input type="text" name="Filtro"><button type="submit" name="submit" value="Filtra" required>Filtra</button></br>
         </form>
         <form action="controladorApostes" method="post">
-            Filtra apostes per nom sencer y per un rang d'aposta:<input type="text" name="filtroUsuarioCompuesto" required> Num1:<input type="number" name="filtroMontoMax" min="1" required> Num2:<input type="number" name="filtroMontoMin" min="1" required> <button type="submit" name="submit" value="filtraMontoUsuario">Filtra</button></br>
+            Filtra apostes per nom sencer y per un rang d'aposta (no inclosos):<input type="text" name="filtroUsuarioCompuesto" required> Num1:<input type="number" name="filtroMontoMax" min="1" required> Num2:<input type="number" name="filtroMontoMin" min="1" required> <button type="submit" name="submit" value="filtraMontoUsuario">Filtra</button></br>
         </form>
         <form action="controladorApostes" method="post">
             Lista las apuestas ganadoras <button type="submit" name="submit" value="ListarGanadores">Listar Ganadores</button>
