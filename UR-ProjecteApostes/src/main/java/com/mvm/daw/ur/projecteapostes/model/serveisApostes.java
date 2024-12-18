@@ -56,9 +56,12 @@ public class serveisApostes{
     
     public List<Aposta> filtrarAposta(List<Aposta> listaApostes, HttpServletRequest request){
         String filtro = request.getParameter("Filtro");
+        filtro = filtro.toLowerCase();
         List<Aposta> listaFiltrada = new ArrayList<>();
         for (Aposta apuesta : listaApostes){
-            if ((apuesta.getNombre()).equals(filtro)){
+            String nombre = apuesta.getNombre();
+            nombre = nombre.toLowerCase();
+            if (nombre.equals(filtro)){
                 listaFiltrada.add(apuesta);
             }
         }
